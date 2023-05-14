@@ -1,0 +1,40 @@
+### 가족관계 등록
+POST /residents/{serialNumber}/relationship     // 여기 `serialNumber`는 기준 주민의 일련번호
+{
+    "familySerialNumber": 123,                  // 대상 가족의 주민 일련번호
+    "relationShip": "father"                    // 부(father),모(mother),배우자(spouse),자녀(child)
+}
+
+### 가족관계 수정
+PUT /residents/{serialNumber}/relationship/{familySerialNumber}
+
+{
+    "relationShip": "mother"
+}
+
+### 가족관계 삭제
+DELETE /residents/{serialNumber}/relationship/{familySerialNumber}
+
+### 출생신고서 등록
+POST /residents/{serialNumber}/birth
+
+### 출생신고서 수정
+PUT /residents/{serialNumber}/birth/{targetSerialNumber}
+
+### 출생신고서 삭제
+DELETE /residents/{serialNumber}/birth/{targetSerialNumber}
+
+### 사망신고서 등록
+POST /residents/{serialNumber}/death
+
+### 사망신고서 수정
+PUT /residents/{serialNumber}/death/{targetSerialNumber}
+
+### 사망신고서 삭제
+DELETE /residents/{serialNumber}/death/{targetSerialNumber}
+
+### 세대 등록
+POST /household
+
+### 세대 삭제
+DELETE /household/{householdSerialNumber}
