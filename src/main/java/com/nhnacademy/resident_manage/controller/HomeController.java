@@ -1,12 +1,11 @@
 package com.nhnacademy.resident_manage.controller;
 
-import com.nhnacademy.resident_manage.domain.Resident;
+import com.nhnacademy.resident_manage.entity.Resident;
 import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 

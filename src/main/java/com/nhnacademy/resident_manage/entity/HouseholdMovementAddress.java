@@ -1,4 +1,4 @@
-package com.nhnacademy.resident_manage.domain;
+package com.nhnacademy.resident_manage.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,22 +10,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "household_composition_resident")
-public class HouseholdCompositionResident {
+@Table(name = "household_movement_address")
+public class HouseholdMovementAddress {
+
     @EmbeddedId
     private Pk pk;
     @ManyToOne
     @MapsId("householdSerialNumber")
     @JoinColumn(name = "household_serial_number")
     private Household household;
-    @ManyToOne
-    @MapsId("residentSerialNumber")
-    @JoinColumn(name = "resident_serial_number")
-    private Resident resident;
-    private Long residentSerialNumber;
-    private LocalDate reportDate;
-    private String householdRelationshipCOde;
-    private String householdCompositionChangeReasonCode;
+    private String houseMovementAddress;
+    private String lastAddressYn;
 
     @Embeddable
     @EqualsAndHashCode
@@ -33,8 +28,8 @@ public class HouseholdCompositionResident {
     @Getter
     @Setter
     public static class Pk implements Serializable {
+        private LocalDate houseMovementReportDate;
         private Long householdSerialNumber;
-        private Long residentSerialNumber;
     }
 
 }

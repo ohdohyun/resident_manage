@@ -1,4 +1,4 @@
-package com.nhnacademy.resident_manage.domain;
+package com.nhnacademy.resident_manage.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;

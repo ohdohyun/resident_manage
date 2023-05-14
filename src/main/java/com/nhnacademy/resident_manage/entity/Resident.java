@@ -1,4 +1,4 @@
-package com.nhnacademy.resident_manage.domain;
+package com.nhnacademy.resident_manage.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +34,10 @@ public class Resident {
     @Column(name = "death_place_address")
     private String deathPlaceAddress;
 
-    @OneToMany(mappedBy = "resident")
+    @OneToMany(mappedBy = "baseResident")
+    private List<FamilyRelationship> baseFamilyRelationships;
+
+    @OneToMany(mappedBy = "familyResident")
     private List<FamilyRelationship> familyRelationships;
 
     @OneToMany(mappedBy = "resident")

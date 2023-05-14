@@ -1,4 +1,4 @@
-package com.nhnacademy.resident_manage.domain;
+package com.nhnacademy.resident_manage.entity;
 
 import lombok.*;
 
@@ -12,10 +12,15 @@ public class FamilyRelationship {
     @EmbeddedId
     private Pk pk;
 
-    @MapsId("residentSerialNumber")
+    @MapsId("baseResidentSerialNumber")
     @ManyToOne
     @JoinColumn(name = "base_resident_serial_number")
-    private Resident resident;
+    private Resident baseResident;
+
+    @MapsId("familyResidentSerialNumber")
+    @ManyToOne
+    @JoinColumn(name = "family_resident_serial_number")
+    private Resident familyResident;
 
     @Column(name = "family_relationship_code")
     private String FamilyRelationshipCode;
@@ -27,9 +32,9 @@ public class FamilyRelationship {
     @Getter
     @Setter
     public static class Pk implements Serializable {
-        @Column(name = "family_resident_serial_number")
-        private Long FamilyResidentSerialNumber;
         @Column(name = "base_resident_serial_number")
-        private Long residentSerialNumber;
+        private Long baseResidentSerialNumber;
+        @Column(name = "family_resident_serial_number")
+        private Long familyResidentSerialNumber;
     }
 }
