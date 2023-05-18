@@ -14,6 +14,7 @@ import java.util.List;
 public class Resident {
     @Id
     @Column(name = "resident_serial_number", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long residentSerialNumber;
     @Column(nullable = false)
     private String name;

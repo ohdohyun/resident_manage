@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 @Entity
 @Table
+@Getter
+@Setter
 public class FamilyRelationship {
 
     @EmbeddedId

@@ -23,7 +23,7 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource);
-        emf.setPackagesToScan("com.nhnacademy.resident_manage.domain");
+        emf.setPackagesToScan("com.nhnacademy.resident_manage.entity");
         emf.setJpaVendorAdapter(jpaVendorAdapters());
         emf.setJpaProperties(jpaProperties());
 

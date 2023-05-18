@@ -1,0 +1,29 @@
+### 사망 신고서 등록
+POST /residents/9/death
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "targetResidentSerialNumber": 10,
+  "birthDeathReportDate": "20230518",
+  "birthReportQualificationsCode": "부",
+  "emailAddress": "ohdo@kakao.com",
+  "phoneNumber": "010-1234-5678"
+}
+
+### 사망 신고서 수정
+PUT /residents/{serialNumber}/death/{targetSerialNumber}
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "reportResidentSerialNumber": 9,
+  "birthDeathReportDate": "20230518",
+  "birthReportQualificationsCode": "부",
+  "emailAddress": "updateTest@kakao.com",
+  "phoneNumber": "010-4321-8765"
+}
+
+### 사망 신고서 삭제
+DELETE /residents/{serialNumber}/death/{targetSerialNumber}
+Host: localhost:8080
