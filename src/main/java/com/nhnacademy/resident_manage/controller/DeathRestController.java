@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class DeathRestController {
     private final DeathService deathService;
-    private final ResidentRepository residentRepository;
 
     @PostMapping
     public void create(@PathVariable Long serialNumber, @RequestBody BirthDeathDto birthDeathDto) {

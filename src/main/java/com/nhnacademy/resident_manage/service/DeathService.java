@@ -20,6 +20,7 @@ public class DeathService {
         BirthDeathReportResident birthDeathReportResident = new BirthDeathReportResident();
         BirthDeathReportResident.Pk pk = new BirthDeathReportResident.Pk();
         pk.setBirthDeathTypeCode("사망");
+
         pk.setResidentSerialNumber(birthDeathDto.getTargetSerialNumber());
         birthDeathReportResident.setPk(pk);
 
