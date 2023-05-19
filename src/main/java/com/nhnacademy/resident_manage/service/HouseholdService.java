@@ -10,11 +10,20 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class HouseholdService {
-//    private final HouseholdRepository householdRepository;
-//    private final ResidentRepository residentRepository;
-//    public Long register(HouseholdDto householdDto) {
-//        Household household = new Household();
-////        household.setResident();
-//        return 1L;
-//    }
+    private final HouseholdRepository householdRepository;
+    private final ResidentRepository residentRepository;
+    public Long save(HouseholdDto householdDto) {
+        Household household = new Household();
+        household.setResident(residentRepository.findById(householdDto.getHouseholdResidentSerialNumber())
+                .orElseThrow());
+        household.setHouseholdCompositionDate(householdDto.getHouseholdCompositionDate());
+        household.setHouseholdCompositionReasonCode(householdDto.getHouseholdCompositionReasonCode());
+        household.setCurrentHouseMovementAddress(householdDto.getCurrentHouseMovementAddress());
+
+        return householdRepository.save(household).getHouseholdSerialNumber();
+    }
+
+    public void delete(Long householdSerialNumber) {
+        householdRepository.deleteById(householdSerialNumber);
+    }
 }

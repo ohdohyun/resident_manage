@@ -1,9 +1,6 @@
 package com.nhnacademy.resident_manage.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +8,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "household_movement_address")
+@Getter
+@Setter
 public class HouseholdMovementAddress {
 
     @EmbeddedId

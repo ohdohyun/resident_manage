@@ -1,7 +1,6 @@
 package com.nhnacademy.resident_manage.controller;
 
 import com.nhnacademy.resident_manage.domain.BirthDeathDto;
-import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import com.nhnacademy.resident_manage.service.DeathService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ public class DeathRestController {
     private final DeathService deathService;
 
     @PostMapping
-    public void create(@PathVariable Long serialNumber, @RequestBody BirthDeathDto birthDeathDto) {
+    public void register(@PathVariable Long serialNumber, @RequestBody BirthDeathDto birthDeathDto) {
         birthDeathDto.setReportResidentSerialNumber(serialNumber);
         deathService.save(birthDeathDto);
     }

@@ -13,12 +13,12 @@ public class ResidentRestController {
     private final ResidentService residentService;
 
     @PostMapping
-    public ResidentId create(@RequestBody ResidentDto resisterDto) {
+    public ResidentId register(@RequestBody ResidentDto resisterDto) {
         return new ResidentId(residentService.save(resisterDto));
     }
 
     @PutMapping("/{serialNumber}")
-    public ResidentId updateResident(@PathVariable Long serialNumber, @RequestBody ResidentDto resisterDto) {
+    public ResidentId update(@PathVariable Long serialNumber, @RequestBody ResidentDto resisterDto) {
         return new ResidentId(residentService.update(resisterDto, serialNumber));
     }
 

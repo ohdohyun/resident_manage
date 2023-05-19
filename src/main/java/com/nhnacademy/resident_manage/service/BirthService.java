@@ -6,23 +6,25 @@ import com.nhnacademy.resident_manage.repository.BirthDeathReportResidentReposit
 import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class BirthService {
     private final BirthDeathReportResidentRepository birthDeathReportResidentRepository;
     private final ResidentRepository residentRepository;
 
-    public void save(BirthDeathDto birthDeathDto) {
+    public void save(Long reportResidentSerialNumber, BirthDeathDto birthDeathDto) {
         BirthDeathReportResident birthDeathReportResident = new BirthDeathReportResident();
         BirthDeathReportResident.Pk pk = new BirthDeathReportResident.Pk();
         pk.setBirthDeathTypeCode("출생");
         pk.setResidentSerialNumber(birthDeathDto.getTargetSerialNumber());
         birthDeathReportResident.setPk(pk);
 
-        birthDeathReportResident.setReportResident(residentRepository.findById(birthDeathDto.getReportResidentSerialNumber())
+        birthDeathReportResident.setReportResident(residentRepository.findById(reportResidentSerialNumber)
                 .orElseThrow(() -> new EntityNotFoundException()));
         birthDeathReportResident.setBirthReportQualificationsCode(birthDeathDto.getBirthDeathReportQualificationsCode());
         birthDeathReportResident.setEmailAddress(birthDeathDto.getEmailAddress());
@@ -36,6 +38,5 @@ public class BirthService {
                 .deleteBirthDeathReportResidentByPk_ResidentSerialNumberAndReportResident_ResidentSerialNumber
                         (targetSerialNumber, serialNumber);
     }
-
 
 }
