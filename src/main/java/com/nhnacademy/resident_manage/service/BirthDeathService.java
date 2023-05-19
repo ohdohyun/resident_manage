@@ -20,7 +20,7 @@ public class BirthDeathService {
     private final BirthDeathReportResidentRepository bdRepository;
     private final ResidentRepository residentRepository;
 
-    public void birthSave(Long serialNumber, BirthRegister birthRegister) {
+    public BirthDeathReportResident.Pk birthSave(Long serialNumber, BirthRegister birthRegister) {
         Resident reportResident = residentRepository.findById(serialNumber).orElseThrow();
         Resident targetResident = residentRepository.findById(birthRegister.getTargetResidentSerialNumber()).orElseThrow();
 
@@ -38,10 +38,10 @@ public class BirthDeathService {
         resident.setEmailAddress(birthRegister.getEmailAddress());
         resident.setPhoneNumber(birthRegister.getPhoneNumber());
 
-        bdRepository.save(resident);
+        return bdRepository.save(resident).getPk();
     }
 
-    public void birthUpdate(Long serialNumber, Long targetSerialNumber, BirthUpdate birthUpdate) {
+    public BirthDeathReportResident.Pk birthUpdate(Long serialNumber, Long targetSerialNumber, BirthUpdate birthUpdate) {
 
 
         BirthDeathReportResident resident = bdRepository.findByReportResident_ResidentSerialNumberAndResident_ResidentSerialNumber(serialNumber,targetSerialNumber);
@@ -51,10 +51,10 @@ public class BirthDeathService {
         resident.setEmailAddress(birthUpdate.getEmailAddress());
         resident.setPhoneNumber(birthUpdate.getPhoneNumber());
 
-        bdRepository.save(resident);
+        return bdRepository.save(resident).getPk();
     }
 
-    public void deathSave(Long serialNumber, DeathRegister deathRegister) {
+    public BirthDeathReportResident.Pk deathSave(Long serialNumber, DeathRegister deathRegister) {
         Resident reportResident = residentRepository.findById(serialNumber).orElseThrow();
         Resident targetResident = residentRepository.findById(deathRegister.getTargetResidentSerialNumber()).orElseThrow();
 
@@ -72,10 +72,10 @@ public class BirthDeathService {
         resident.setEmailAddress(deathRegister.getEmailAddress());
         resident.setPhoneNumber(deathRegister.getPhoneNumber());
 
-        bdRepository.save(resident);
+        return bdRepository.save(resident).getPk();
     }
 
-    public void deathUpdate(Long serialNumber, Long targetSerialNumber, DeathUpdate deathUpdate) {
+    public BirthDeathReportResident.Pk deathUpdate(Long serialNumber, Long targetSerialNumber, DeathUpdate deathUpdate) {
         BirthDeathReportResident resident = bdRepository.findByReportResident_ResidentSerialNumberAndResident_ResidentSerialNumber(serialNumber,targetSerialNumber);
 
         resident.setBirthDeathReportDate(deathUpdate.getDeathReportDate());
@@ -83,7 +83,7 @@ public class BirthDeathService {
         resident.setEmailAddress(deathUpdate.getEmailAddress());
         resident.setPhoneNumber(deathUpdate.getPhoneNumber());
 
-        bdRepository.save(resident);
+        return bdRepository.save(resident).getPk();
     }
 
     public void delete(Long serialNumber, Long targetSerialNumber) {

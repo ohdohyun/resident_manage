@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class FamilyRelationshipService {
     private final FamilyRelationshipRepository familyRelationshipRepository;
     private final ResidentRepository residentRepository;
-    public void save(Long baseSerialNumber, FamilyRelationRegister familyRelationRegister) {
+    public FamilyRelationship.Pk save(Long baseSerialNumber, FamilyRelationRegister familyRelationRegister) {
         Resident baseResident = residentRepository.findById(baseSerialNumber).orElseThrow();
         Resident familyResident = residentRepository.findById(familyRelationRegister.getFamilySerialNumber()).orElseThrow();
 
@@ -32,13 +32,13 @@ public class FamilyRelationshipService {
         familyRelationship.setFamilyResident(familyResident);
         familyRelationship.setBaseResident(baseResident);
 
-        familyRelationshipRepository.save(familyRelationship);
+        return familyRelationshipRepository.save(familyRelationship).getPk();
 
     }
-    public void update(Long baseSerialNumber, Long familySerialNumber, FamilyRelationUpdate familyRelationUpdate) {
+    public String update(Long baseSerialNumber, Long familySerialNumber, FamilyRelationUpdate familyRelationUpdate) {
         FamilyRelationship familyRelationship = familyRelationshipRepository.findById(new FamilyRelationship.Pk(baseSerialNumber, familySerialNumber)).orElseThrow();
         familyRelationship.setFamilyRelationshipCode(familyRelationUpdate.getRelationship());
-        familyRelationshipRepository.save(familyRelationship);
+        return familyRelationshipRepository.save(familyRelationship).getFamilyRelationshipCode();
     }
 
     public void delete(Long baseSerialNumber, Long familySerialNumber) {

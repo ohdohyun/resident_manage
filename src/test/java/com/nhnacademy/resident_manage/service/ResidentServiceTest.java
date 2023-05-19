@@ -34,12 +34,12 @@ class ResidentServiceTest {
     @Autowired
     private ResidentRepository residentRepository;
 
-    String testName = "testUpdate";
-    String testRegistrationNumber = "123456-098765";
-    String testGenderCode = "남Update";
-    LocalDateTime testBirthDate = LocalDateTime.now();
-    String testBirthPlaceCode = "자택";
-    String testRegistrationBaseAddress = "대왕판교로645Test";
+    private final String testName = "testUpdate";
+    private final String testRegistrationNumber = "123456-098765";
+    private final String testGenderCode = "남Update";
+    private final LocalDateTime testBirthDate = LocalDateTime.now();
+    private final String testBirthPlaceCode = "자택";
+    private final String testRegistrationBaseAddress = "대왕판교로645Test";
 
     @Test
     void save() {

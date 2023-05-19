@@ -34,10 +34,10 @@ class HouseholdServiceTest {
     @Autowired
     private HouseholdRepository householdRepository;
 
-    Long testHouseholdResidentSerialNumber = 4L;
-    LocalDate testHouseholdCompositionDate = LocalDate.now();
-    String testHouseholdCompositionReasonCode = "세대분리 test";
-    String testCurrentHouseMovementAddress = "대왕판교로 645번길 test";
+    private final Long testHouseholdResidentSerialNumber = 4L;
+    private final LocalDate testHouseholdCompositionDate = LocalDate.now();
+    private final String testHouseholdCompositionReasonCode = "세대분리 test";
+    private final String testCurrentHouseMovementAddress = "대왕판교로 645번길 test";
 
     @Test
 

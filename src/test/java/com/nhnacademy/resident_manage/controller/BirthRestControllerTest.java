@@ -52,7 +52,6 @@ class BirthRestControllerTest {
     @Disabled
     @DisplayName("Birth 등록 test")
     void create() throws Exception {
-
         mockMvc.perform(post("/residents")
                         .content(objectMapper.writeValueAsString(new BirthRegister()))
                         .contentType(MediaType.APPLICATION_JSON))

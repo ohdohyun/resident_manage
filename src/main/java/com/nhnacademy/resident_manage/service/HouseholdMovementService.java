@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class HouseholdMovementService {
     private final HouseholdMovementRepository householdMovementRepository;
     private final HouseholdRepository householdRepository;
-    public void save(Long householdSerialNumber, HouseholdMovementAddressRegister register) {
+    public HouseholdMovementAddress.Pk save(Long householdSerialNumber, HouseholdMovementAddressRegister register) {
         Household household = householdRepository.getReferenceById(householdSerialNumber);
 
         HouseholdMovementAddress householdMovementAddress = new HouseholdMovementAddress();
@@ -32,13 +32,13 @@ public class HouseholdMovementService {
         householdMovementAddress.setHouseMovementAddress(register.getHouseholdMovementAddress());
         householdMovementAddress.setLastAddressYn(register.getLastAddressYn());
 
-        householdMovementRepository.save(householdMovementAddress);
+        return householdMovementRepository.save(householdMovementAddress).getPk();
     }
 
-    public void update(Long householdSerialNumber, LocalDate reportDate, HouseholdMovementAddressUpdate update) {
+    public String update(Long householdSerialNumber, LocalDate reportDate, HouseholdMovementAddressUpdate update) {
         HouseholdMovementAddress householdMovementAddress = householdMovementRepository.getReferenceById(new HouseholdMovementAddress.Pk(householdSerialNumber, reportDate));
         householdMovementAddress.setLastAddressYn(update.getLastAddressYn());
-        householdMovementRepository.save(householdMovementAddress);
+        return householdMovementRepository.save(householdMovementAddress).getLastAddressYn();
     }
 
     public void delete(Long householdSerialNumber, LocalDate reportDate) {
