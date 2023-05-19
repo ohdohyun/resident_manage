@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "certificate_issue")
 @Getter
 @Setter
+@Table(name = "certificate_issue")
 public class CertificateIssue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

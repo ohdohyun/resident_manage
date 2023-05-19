@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table
+@Table(name = "family_relationship")
 @Getter
 @Setter
 public class FamilyRelationship {

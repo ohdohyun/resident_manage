@@ -11,10 +11,10 @@ class FamilyRelationshipServiceTest {
     }
 
     @Test
-    void delete() {
+    void update() {
     }
 
     @Test
-    void update() {
+    void delete() {
     }
 }

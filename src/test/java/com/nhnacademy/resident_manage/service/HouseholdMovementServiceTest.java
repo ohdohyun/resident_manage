@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class HouseholdMovementServiceTest {
 
     @Test
-    void register() {
+    void save() {
     }
 
     @Test

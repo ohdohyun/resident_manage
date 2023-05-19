@@ -4,10 +4,22 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeathServiceTest {
+class BirthDeathServiceTest {
 
     @Test
-    void save() {
+    void birthSave() {
+    }
+
+    @Test
+    void birthUpdate() {
+    }
+
+    @Test
+    void deathSave() {
+    }
+
+    @Test
+    void deathUpdate() {
     }
 
     @Test

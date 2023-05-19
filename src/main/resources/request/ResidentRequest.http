@@ -4,11 +4,11 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-"name": "apiTest",
+"name": "apiTest2",
 "residentRegistrationNumber":"123456-78910",
 "genderCode":"M",
-"birthDate": "2023-01-01 10:30:00",
-"birthPlaceCode":"ABED",
+"birthDate": "2023-05-14 10:30:00",
+"birthPlaceCode":"병원",
 "registrationBaseAddress":"대왕판교로645"
 }
 

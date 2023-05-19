@@ -1,10 +1,11 @@
 ### 가족관계 등록
-POST /residents/9/relationship
+POST /residents/6/relationship
 Host: localhost:8080
 Content-Type: application/json
+
 {
-    "familySerialNumber": 10,                  // 대상 가족의 주민 일련번호
-    "relationShip": "father"                    // 부(father),모(mother),배우자(spouse),자녀(child)
+    "familySerialNumber": 8,
+    "relationship": "father"
 }
 
 ### 가족관계 수정

@@ -15,11 +15,8 @@ public class HouseholdRestController {
     private final HouseholdService householdService;
 
     @PostMapping
-    public Map<String, Long> register(@RequestBody HouseholdRegister householdRegister) {
-        Map<String, Long> result = new HashMap<>();
-        result.put("id", householdService.save(householdRegister));
-
-        return result;
+    public void register(@RequestBody HouseholdRegister householdRegister) {
+        householdService.save(householdRegister);
     }
 
     @DeleteMapping("/{householdSerialNumber}")
