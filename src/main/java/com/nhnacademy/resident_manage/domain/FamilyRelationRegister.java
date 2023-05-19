@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FamilyRelationshipDto {
+public class FamilyRelationRegister {
     private Long familySerialNumber;
     private String relationship;
+
 }

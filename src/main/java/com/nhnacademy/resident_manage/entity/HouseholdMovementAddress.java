@@ -24,11 +24,12 @@ public class HouseholdMovementAddress {
     @Embeddable
     @EqualsAndHashCode
     @NoArgsConstructor
+    @AllArgsConstructor
     @Getter
     @Setter
     public static class Pk implements Serializable {
-        private LocalDate houseMovementReportDate;
         private Long householdSerialNumber;
+        private LocalDate houseMovementReportDate;
     }
 
 }

@@ -1,0 +1,23 @@
+### 세대 전입 주소 등록
+POST /household/{householdSerialNumber}/movement
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "houseMovementReportDate": "2023-02-03",
+  "householdMovementAddress": "왕대왕판교로 645",
+  "lastAddressYn": "Y"
+}
+
+### 세대 전입 주소 수정
+PUT /household/{householdSerialNumber}/movement/{reportDate}
+Host: localhost:8080
+Content-Type: application/json
+
+{
+  "lastAddressYn": "N"
+}
+
+### 세대 전입 주소 삭제
+DELETE /household/{householdSerialNumber}/movement/{reportDate}
+Host: localhost:8080

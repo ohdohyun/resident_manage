@@ -1,37 +1,49 @@
 package com.nhnacademy.resident_manage.service;
 
-import com.nhnacademy.resident_manage.domain.FamilyRelationshipDto;
-import com.nhnacademy.resident_manage.domain.FamilyRelationshipRelationOnly;
+import com.nhnacademy.resident_manage.domain.FamilyRelationRegister;
+import com.nhnacademy.resident_manage.domain.FamilyRelationUpdate;
 import com.nhnacademy.resident_manage.entity.FamilyRelationship;
+import com.nhnacademy.resident_manage.entity.Resident;
 import com.nhnacademy.resident_manage.repository.FamilyRelationshipRepository;
+import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class FamilyRelationshipService {
     private final FamilyRelationshipRepository familyRelationshipRepository;
+    private final ResidentRepository residentRepository;
+    public void save(Long baseSerialNumber, FamilyRelationRegister familyRelationRegister) {
+        Resident baseResident = residentRepository.findById(baseSerialNumber).orElseThrow();
+        Resident familyResident = residentRepository.findById(familyRelationRegister.getFamilySerialNumber()).orElseThrow();
 
-    public Long save(Long baseSerialNumber, FamilyRelationshipDto familyRelationshipDto) {
         FamilyRelationship familyRelationship = new FamilyRelationship();
-        FamilyRelationship.Pk pk = new FamilyRelationship.Pk(baseSerialNumber, familyRelationshipDto.getFamilySerialNumber());
-        familyRelationship.setPk(pk);
-        familyRelationship.setFamilyRelationshipCode(familyRelationshipDto.getRelationship());
+        FamilyRelationship.Pk pk = new FamilyRelationship.Pk();
 
-        return familyRelationshipRepository.save(familyRelationship).getPk().getBaseResidentSerialNumber();
+        pk.setFamilyResidentSerialNumber(familyRelationRegister.getFamilySerialNumber());
+        pk.setBaseResidentSerialNumber(baseSerialNumber);
+        familyRelationship.setPk(pk);
+
+        familyRelationship.setFamilyRelationshipCode(familyRelationRegister.getRelationship());
+
+        familyRelationship.setFamilyResident(familyResident);
+        familyRelationship.setBaseResident(baseResident);
+
+        familyRelationshipRepository.save(familyRelationship);
+
+    }
+    public void update(Long baseSerialNumber, Long familySerialNumber, FamilyRelationUpdate familyRelationUpdate) {
+        FamilyRelationship familyRelationship = familyRelationshipRepository.findById(new FamilyRelationship.Pk(baseSerialNumber, familySerialNumber)).orElseThrow();
+        familyRelationship.setFamilyRelationshipCode(familyRelationUpdate.getRelationship());
+        familyRelationshipRepository.save(familyRelationship);
     }
 
     public void delete(Long baseSerialNumber, Long familySerialNumber) {
         familyRelationshipRepository.deleteById(new FamilyRelationship.Pk(baseSerialNumber,familySerialNumber));
     }
 
-    public Long update(Long baseSerialNumber, Long familySerialNumber, FamilyRelationshipRelationOnly relation) {
-        FamilyRelationship familyRelationship = familyRelationshipRepository.findById(new FamilyRelationship.Pk(baseSerialNumber, familySerialNumber))
-                .orElseThrow(() -> new EntityNotFoundException());
-        familyRelationship.setFamilyRelationshipCode(relation.getRelationship());
-        return familyRelationshipRepository.save(familyRelationship).getPk().getBaseResidentSerialNumber();
-    }
 
 }

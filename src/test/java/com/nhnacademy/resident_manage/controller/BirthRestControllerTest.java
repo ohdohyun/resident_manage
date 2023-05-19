@@ -60,8 +60,7 @@ class BirthRestControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(jsonPath("$.id").value(2))
-                .andReturn()
-        ;
+                .andReturn();
     }
 
     @Test

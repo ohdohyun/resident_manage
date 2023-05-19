@@ -1,8 +1,13 @@
 package com.nhnacademy.resident_manage.service;
 
-import com.nhnacademy.resident_manage.domain.HouseholdMovementDto;
+import com.nhnacademy.resident_manage.domain.HouseholdMovementAddressRegister;
+import com.nhnacademy.resident_manage.domain.HouseholdMovementAddressUpdate;
+import com.nhnacademy.resident_manage.entity.Household;
 import com.nhnacademy.resident_manage.entity.HouseholdMovementAddress;
+import com.nhnacademy.resident_manage.entity.Resident;
 import com.nhnacademy.resident_manage.repository.HouseholdMovementRepository;
+import com.nhnacademy.resident_manage.repository.HouseholdRepository;
+import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,32 +17,32 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class HouseholdMovementService {
     private final HouseholdMovementRepository householdMovementRepository;
+    private final HouseholdRepository householdRepository;
+    public void save(Long householdSerialNumber, HouseholdMovementAddressRegister register) {
+        Household household = householdRepository.getReferenceById(householdSerialNumber);
 
-    public HouseholdMovementAddress.Pk save(Long householdSerialNumber, HouseholdMovementDto householdMovementDto) {
-        householdMovementDto.setHouseholdSerialNumber(householdSerialNumber);
         HouseholdMovementAddress householdMovementAddress = new HouseholdMovementAddress();
         HouseholdMovementAddress.Pk pk = new HouseholdMovementAddress.Pk();
-        pk.setHouseholdSerialNumber(householdSerialNumber);
-        pk.setHouseMovementReportDate(LocalDate.now());
-        householdMovementAddress.setPk(pk);
-        householdMovementAddress.setLastAddressYn(householdMovementDto.getLastAddressYn());
-        householdMovementAddress.setHouseMovementAddress(householdMovementDto.getHouseMovementAddress());
 
-        return householdMovementRepository.save(householdMovementAddress).getPk();
+        pk.setHouseMovementReportDate(register.getHouseMovementReportDate());
+        pk.setHouseholdSerialNumber(householdSerialNumber);
+        householdMovementAddress.setPk(pk);
+
+        householdMovementAddress.setHousehold(household);
+        householdMovementAddress.setHouseMovementAddress(register.getHouseholdMovementAddress());
+        householdMovementAddress.setLastAddressYn(register.getLastAddressYn());
+
+        householdMovementRepository.save(householdMovementAddress);
     }
 
-    public Long update(Long householdSerialNumber, LocalDate reportDate, HouseholdMovementDto householdMovementDto) {
-        householdMovementDto.setHouseholdSerialNumber(householdSerialNumber);
-        householdMovementDto.setHouseholdMovementReportDate(reportDate);
-        new HouseholdMovementAddress();
-        return null;
+    public void update(Long householdSerialNumber, LocalDate reportDate, HouseholdMovementAddressUpdate update) {
+        HouseholdMovementAddress householdMovementAddress = householdMovementRepository.getReferenceById(new HouseholdMovementAddress.Pk(householdSerialNumber, reportDate));
+        householdMovementAddress.setLastAddressYn(update.getLastAddressYn());
+        householdMovementRepository.save(householdMovementAddress);
     }
 
     public void delete(Long householdSerialNumber, LocalDate reportDate) {
-        HouseholdMovementAddress.Pk pk = new HouseholdMovementAddress.Pk();
-        pk.setHouseholdSerialNumber(householdSerialNumber);
-        pk.setHouseMovementReportDate(reportDate);
-        householdMovementRepository.deleteById(pk);
+        householdMovementRepository.deleteById(new HouseholdMovementAddress.Pk(householdSerialNumber,reportDate));
     }
 
 }

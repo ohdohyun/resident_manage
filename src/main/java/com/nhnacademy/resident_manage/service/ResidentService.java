@@ -1,26 +1,35 @@
 package com.nhnacademy.resident_manage.service;
 
-import com.nhnacademy.resident_manage.domain.ResidentDto;
+import com.nhnacademy.resident_manage.domain.ResidentRegister;
+import com.nhnacademy.resident_manage.domain.ResidentUpdate;
 import com.nhnacademy.resident_manage.entity.Resident;
 import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
 
 @Service
 @RequiredArgsConstructor
 public class ResidentService {
     private final ResidentRepository residentRepository;
 
-    public Long save(ResidentDto residentDto) {
-        return residentRepository.saveAndFlush(residentDto.toEntity()).getResidentSerialNumber();
-    }
-    public Long update(ResidentDto residentDto, Long id) {
-        Resident resident = residentRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(id + " not found"));
+    public void save(ResidentRegister residentRegister) {
+        Resident resident = new Resident();
+        resident.setName(residentRegister.getName());
+        resident.setResidentRegistrationNumber(residentRegister.getResidentRegistrationNumber());
+        resident.setGenderCode(residentRegister.getGenderCode());
+        resident.setBirthDate(residentRegister.getBirthDate());
+        resident.setBirthPlaceCode(residentRegister.getBirthPlaceCode());
+        resident.setRegistrationBaseAddress(residentRegister.getRegistrationBaseAddress());
 
-        return residentRepository.save(resident).getResidentSerialNumber();
+        residentRepository.save(resident);
+    }
+    public void update(Long serialNumber, ResidentUpdate residentUpdate) {
+        Resident resident = residentRepository.getReferenceById(serialNumber);
+        resident.setName(residentUpdate.getName());
+        resident.setGenderCode(residentUpdate.getGenderCode());
+        resident.setRegistrationBaseAddress(residentUpdate.getRegistrationBaseAddress());
+
+        residentRepository.save(resident);
     }
 
 }

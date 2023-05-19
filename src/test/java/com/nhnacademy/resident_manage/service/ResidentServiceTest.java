@@ -17,7 +17,7 @@ class ResidentServiceTest {
     void save() {
         ResidentRepository residentRepository1 = mock(ResidentRepository.class);
 
-        when(residentRepository1.save(new Resident())).thenReturn(new Resident());
+//        when(residentRepository1.save(new Resident())).thenReturn(new Resident());
 
     }
 

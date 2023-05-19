@@ -1,7 +1,7 @@
 package com.nhnacademy.resident_manage.controller;
 
-import com.nhnacademy.resident_manage.domain.ResidentId;
-import com.nhnacademy.resident_manage.domain.ResidentDto;
+import com.nhnacademy.resident_manage.domain.ResidentRegister;
+import com.nhnacademy.resident_manage.domain.ResidentUpdate;
 import com.nhnacademy.resident_manage.service.ResidentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +13,13 @@ public class ResidentRestController {
     private final ResidentService residentService;
 
     @PostMapping
-    public ResidentId register(@RequestBody ResidentDto resisterDto) {
-        return new ResidentId(residentService.save(resisterDto));
+    public void register(@RequestBody ResidentRegister residentRegister) {
+        residentService.save(residentRegister);
     }
 
     @PutMapping("/{serialNumber}")
-    public ResidentId update(@PathVariable Long serialNumber, @RequestBody ResidentDto resisterDto) {
-        return new ResidentId(residentService.update(resisterDto, serialNumber));
+    public void update(@PathVariable Long serialNumber, @RequestBody ResidentUpdate residentUpdate) {
+        residentService.update(serialNumber, residentUpdate);
     }
 
 }

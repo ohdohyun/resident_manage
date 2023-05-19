@@ -17,7 +17,6 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-  "reportResidentSerialNumber": 9,
   "birthDeathReportDate": "20230518",
   "birthReportQualificationsCode": "부",
   "emailAddress": "updateTest@kakao.com",

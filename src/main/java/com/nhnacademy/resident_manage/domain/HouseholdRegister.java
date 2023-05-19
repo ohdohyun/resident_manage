@@ -7,10 +7,9 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class HouseholdDto {
+public class HouseholdRegister {
     private Long householdResidentSerialNumber;
     private LocalDate householdCompositionDate;
     private String householdCompositionReasonCode;
     private String currentHouseMovementAddress;
-
 }

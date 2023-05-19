@@ -1,8 +1,7 @@
 package com.nhnacademy.resident_manage.controller;
 
-import com.nhnacademy.resident_manage.domain.FamilyRelationshipBaseId;
-import com.nhnacademy.resident_manage.domain.FamilyRelationshipDto;
-import com.nhnacademy.resident_manage.domain.FamilyRelationshipRelationOnly;
+import com.nhnacademy.resident_manage.domain.FamilyRelationRegister;
+import com.nhnacademy.resident_manage.domain.FamilyRelationUpdate;
 import com.nhnacademy.resident_manage.service.FamilyRelationshipService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,18 +13,18 @@ public class FamilyRelationshipRestController {
     private final FamilyRelationshipService familyRelationshipService;
 
     @PostMapping("/{serialNumber}/relationship")
-    public FamilyRelationshipBaseId resister(@PathVariable Long serialNumber, @RequestBody FamilyRelationshipDto familyRelationshipDto) {
-        return new FamilyRelationshipBaseId(familyRelationshipService.save(serialNumber, familyRelationshipDto));
+    public void resister(@PathVariable Long serialNumber, @RequestBody FamilyRelationRegister familyRelationRegister) {
+        familyRelationshipService.save(serialNumber, familyRelationRegister);
     }
 
     @DeleteMapping("/{serialNumber}/relationship/{familySerialNumber}")
-    public void delete(@PathVariable("serialNumber") Long serialNumber, @PathVariable("familySerialNumber") Long familySerialNumber) {
-        familyRelationshipService.delete(serialNumber, familySerialNumber);
+    public void update(@PathVariable("serialNumber") Long serialNumber, @PathVariable("familySerialNumber") Long familySerialNumber, @RequestBody FamilyRelationUpdate familyRelationUpdate) {
+        familyRelationshipService.update(serialNumber, familySerialNumber, familyRelationUpdate);
     }
 
-    @PutMapping("/{serialNumber}/relationship/{familySerialNumber})")
-    public FamilyRelationshipBaseId update(@PathVariable Long serialNumber, @PathVariable Long familySerialNumber, @RequestBody FamilyRelationshipRelationOnly relationship) {
-        return new FamilyRelationshipBaseId(familyRelationshipService.update(serialNumber, familySerialNumber, relationship));
+    @DeleteMapping("/{serialNumber}/relationship/{familySerialNumber})")
+    public void delete(@PathVariable Long serialNumber, @PathVariable Long familySerialNumber) {
+        familyRelationshipService.delete(serialNumber, familySerialNumber);
     }
 
 }

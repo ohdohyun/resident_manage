@@ -6,7 +6,7 @@ Content-Type: application/json
 {
   "targetResidentSerialNumber": 10,
   "birthDeathReportDate": "20230518",
-  "birthReportQualificationsCode": "부",
+  "deathReportQualificationsCode": "자",
   "emailAddress": "ohdo@kakao.com",
   "phoneNumber": "010-1234-5678"
 }
@@ -17,9 +17,8 @@ Host: localhost:8080
 Content-Type: application/json
 
 {
-  "reportResidentSerialNumber": 9,
   "birthDeathReportDate": "20230518",
-  "birthReportQualificationsCode": "부",
+  "deathReportQualificationsCode": "자",
   "emailAddress": "updateTest@kakao.com",
   "phoneNumber": "010-4321-8765"
 }
