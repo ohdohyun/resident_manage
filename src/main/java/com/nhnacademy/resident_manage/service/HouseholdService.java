@@ -13,15 +13,16 @@ import org.springframework.stereotype.Service;
 public class HouseholdService {
     private final HouseholdRepository householdRepository;
     private final ResidentRepository residentRepository;
-    public void save(HouseholdRegister householdRegister) {
+    public Long save(HouseholdRegister householdRegister) {
         Resident householdResident = residentRepository.getReferenceById(householdRegister.getHouseholdResidentSerialNumber());
         Household household = new Household();
 
         household.setResident(householdResident);
         household.setHouseholdCompositionDate(householdRegister.getHouseholdCompositionDate());
-        household.setHouseholdCompositionReasonCode(household.getHouseholdCompositionReasonCode());
-        household.setCurrentHouseMovementAddress(household.getCurrentHouseMovementAddress());
-        householdRepository.save(household);
+        household.setHouseholdCompositionReasonCode(householdRegister.getHouseholdCompositionReasonCode());
+        household.setCurrentHouseMovementAddress(householdRegister.getCurrentHouseMovementAddress());
+
+        return householdRepository.save(household).getHouseholdSerialNumber();
     }
 
     public void delete(Long householdSerialNumber) {

@@ -25,7 +25,7 @@ public class FamilyRelationship {
     private Resident familyResident;
 
     @Column(name = "family_relationship_code")
-    private String FamilyRelationshipCode;
+    private String familyRelationshipCode;
 
     @Embeddable
     @EqualsAndHashCode

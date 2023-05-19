@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS resident (
-    resident_serial_number INT NOT NULL,
+    resident_serial_number INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     resident_registration_number VARCHAR(300) NOT NULL,
     gender_code VARCHAR(20) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS family_relationship (
     );
 
 CREATE TABLE IF NOT EXISTS household (
-    household_serial_number INT NOT NULL,
+    household_serial_number INT NOT NULL AUTO_INCREMENT,
     household_resident_serial_number INT NOT NULL,
     household_composition_date DATE NOT NULL,
     household_composition_reason_code VARCHAR(20) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS household_composition_resident (
     );
 
 CREATE TABLE IF NOT EXISTS certificate_issue (
-    certificate_confirmation_number BIGINT NOT NULL,
+    certificate_confirmation_number BIGINT NOT NULL AUTO_INCREMENT,
     resident_serial_number INT NOT NULL,
     certificate_type_code VARCHAR(20) NOT NULL,
     certificate_issue_date DATE NOT NULL,

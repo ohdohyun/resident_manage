@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class ResidentService {
     private final ResidentRepository residentRepository;
 
-    public void save(ResidentRegister residentRegister) {
+    public Long save(ResidentRegister residentRegister) {
         Resident resident = new Resident();
         resident.setName(residentRegister.getName());
         resident.setResidentRegistrationNumber(residentRegister.getResidentRegistrationNumber());
@@ -21,15 +21,15 @@ public class ResidentService {
         resident.setBirthPlaceCode(residentRegister.getBirthPlaceCode());
         resident.setRegistrationBaseAddress(residentRegister.getRegistrationBaseAddress());
 
-        residentRepository.save(resident);
+        return residentRepository.save(resident).getResidentSerialNumber();
     }
-    public void update(Long serialNumber, ResidentUpdate residentUpdate) {
+    public Long update(Long serialNumber, ResidentUpdate residentUpdate) {
         Resident resident = residentRepository.getReferenceById(serialNumber);
         resident.setName(residentUpdate.getName());
         resident.setGenderCode(residentUpdate.getGenderCode());
         resident.setRegistrationBaseAddress(residentUpdate.getRegistrationBaseAddress());
 
-        residentRepository.save(resident);
+        return residentRepository.save(resident).getResidentSerialNumber();
     }
 
 }

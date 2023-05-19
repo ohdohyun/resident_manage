@@ -2,6 +2,7 @@ package com.nhnacademy.resident_manage.repository;
 
 import com.nhnacademy.resident_manage.config.RootConfig;
 import com.nhnacademy.resident_manage.config.WebConfig;
+import com.nhnacademy.resident_manage.domain.FamilyRelationshipDto;
 import com.nhnacademy.resident_manage.entity.FamilyRelationship;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -48,6 +49,22 @@ class FamilyRelationshipRepositoryTest {
         Assertions.assertThat(testFamilyRelationship.getPk().getFamilyResidentSerialNumber()).isEqualTo(testFamilySerialNumber);
         Assertions.assertThat(testFamilyRelationship.getPk().getBaseResidentSerialNumber()).isEqualTo(testSerialNumber);
         Assertions.assertThat(testFamilyRelationship.getFamilyRelationshipCode()).isEqualTo(testRelationShip);
+    }
+
+    @Test
+    @DisplayName("DTO interface test")
+    void test11() {
+        FamilyRelationship.Pk pk = new FamilyRelationship.Pk();
+        pk.setBaseResidentSerialNumber(1L);
+        pk.setFamilyResidentSerialNumber(2L);
+
+        FamilyRelationshipDto relationshipDto = familyRelationshipRepository.findByPk(pk);
+        FamilyRelationship.Pk resultPk = relationshipDto.getPk();
+        String rst = relationshipDto.getFamilyRelationshipCode();
+        System.out.println("rst = " + rst);
+
+        Assertions.assertThat(rst).isNotNull();
+        Assertions.assertThat(resultPk).isNotNull();
     }
 
 }
