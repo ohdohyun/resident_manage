@@ -39,7 +39,6 @@ class BirthDeathServiceTest {
     private final Long testTargetSerialNumber = 3L;
     private final LocalDate testReportDate = LocalDate.now();
     private final String testBirthReportQualificationsCode = "testNotBirthOrDeath";
-    private final String testDeathReportQualificationsCode = "testNotBirthOrDeath";
     private final String testEmailAddress = "test@ohdo.com";
     private final String testPhoneNumber = "010-test-tset";
 
@@ -80,6 +79,7 @@ class BirthDeathServiceTest {
     @Test
     @DisplayName("정상 등록 테스트")
     void deathSave() {
+        String testDeathReportQualificationsCode = "testNotBirthOrDeath";
         DeathRegister test = new DeathRegister();
         test.setDeathReportDate(testReportDate);
         test.setDeathReportQualificationsCode(testDeathReportQualificationsCode);

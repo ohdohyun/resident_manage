@@ -50,17 +50,17 @@ class BirthRestControllerTest {
                 .build();
     }
 
-    private final Long testReportSerialNumber = 7L;
-    private final Long testTargetSerialNumber = 3L;
     private final LocalDate testReportDate = LocalDate.now();
     private final String testBirthReportQualificationsCode = "testNotBirthOrDeath";
-    private final String testDeathReportQualificationsCode = "testNotBirthOrDeath";
     private final String testEmailAddress = "test@ohdo.com";
     private final String testPhoneNumber = "010-test-tset";
 
     @Test
     @DisplayName("출생 등록 테스트")
     void createTest() throws Exception {
+        Long testReportSerialNumber = 7L;
+        Long testTargetSerialNumber = 3L;
+
         BirthRegister test = new BirthRegister();
         test.setTargetResidentSerialNumber(testTargetSerialNumber);
         test.setBirthReportDate(testReportDate);
@@ -88,10 +88,6 @@ class BirthRestControllerTest {
         test.setEmailAddress(testEmailAddress);
         test.setPhoneNumber(testPhoneNumber);
 
-        /**
-         * 실제 있는 데이터로 테스트 진행, schema.sql 참조
-         * 4번이 신고한 7번 출생 신고
-         */
         mockMvc.perform(put("/residents/" + 4 + "/birth/" + 7)
                         .content(objectMapper.writeValueAsString(test))
                         .contentType(MediaType.APPLICATION_JSON))

@@ -33,14 +33,14 @@ class HouseholdMovementServiceTest {
     @Autowired
     private HouseholdMovementRepository repository;
     private final Long testHouseholdSerialNumber = 1L;
-    private final Long testHouseholdResidentSerialNumber= 1L;
     private final LocalDate testHouseMovementReportDate = LocalDate.of(2013,3,5);
-    private final String testHouseholdMovementAddress = "대왕판교로 645 test";
     private final String testLastAddressYn = "NooooforTest";
 
     @Test
     @DisplayName("HouseMovementAddress 저장 테스트")
     void save() {
+        Long testHouseholdResidentSerialNumber= 1L;
+        String testHouseholdMovementAddress = "대왕판교로 645 test";
         HouseholdMovementAddressRegister test = new HouseholdMovementAddressRegister();
         test.setHouseholdResidentSerialNumber(testHouseholdResidentSerialNumber);
         test.setHouseMovementReportDate(testHouseMovementReportDate);

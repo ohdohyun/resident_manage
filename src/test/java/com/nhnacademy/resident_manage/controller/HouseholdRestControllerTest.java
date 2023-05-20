@@ -41,10 +41,7 @@ class HouseholdRestControllerTest {
     ObjectMapper objectMapper;
     MockMvc mockMvc;
 
-    private final Long testHouseholdResidentSerialNumber = 4L;
     private final LocalDate testHouseholdCompositionDate = LocalDate.now();
-    private final String testHouseholdCompositionReasonCode = "세대분리 test";
-    private final String testCurrentHouseMovementAddress = "대왕판교로 645번길 test";
 
     @BeforeEach
     void setup() {
@@ -56,6 +53,9 @@ class HouseholdRestControllerTest {
 
     @Test
     void register() throws Exception {
+        Long testHouseholdResidentSerialNumber = 4L;
+        String testHouseholdCompositionReasonCode = "세대분리 test";
+        String testCurrentHouseMovementAddress = "대왕판교로 645번길 test";
 
         HouseholdRegister test = new HouseholdRegister();
         test.setCurrentHouseMovementAddress(testCurrentHouseMovementAddress);

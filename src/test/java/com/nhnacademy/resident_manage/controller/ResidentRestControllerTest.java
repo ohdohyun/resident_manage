@@ -48,10 +48,8 @@ class ResidentRestControllerTest {
      * 테스트용 데이터 입니다
      */
     private final String testName = "testUpdate";
-    private final String testRegistrationNumber = "123456-098765";
     private final String testGenderCode = "남Update";
     private final LocalDateTime testBirthDate = LocalDateTime.now();
-    private final String testBirthPlaceCode = "자택";
     private final String testRegistrationBaseAddress = "대왕판교로645Test";
 
     @BeforeEach
@@ -65,6 +63,8 @@ class ResidentRestControllerTest {
     @Test
     @DisplayName("BirthRestControllerTest 등록 test")
     void create() throws Exception {
+        String testRegistrationNumber = "123456-098765";
+        String testBirthPlaceCode = "자택";
 
         ResidentRegister test = new ResidentRegister();
         test.setName(testName);

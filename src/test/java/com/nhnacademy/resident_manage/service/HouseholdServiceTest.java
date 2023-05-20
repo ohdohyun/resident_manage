@@ -31,14 +31,15 @@ class HouseholdServiceTest {
     @Autowired
     private HouseholdRepository householdRepository;
 
-    private final Long testHouseholdResidentSerialNumber = 4L;
-    private final LocalDate testHouseholdCompositionDate = LocalDate.now();
-    private final String testHouseholdCompositionReasonCode = "세대분리 test";
-    private final String testCurrentHouseMovementAddress = "대왕판교로 645번길 test";
 
     @Test
     @DisplayName("정상 등록 테스트")
     void save() {
+        LocalDate testHouseholdCompositionDate = LocalDate.now();
+        Long testHouseholdResidentSerialNumber = 4L;
+        String testHouseholdCompositionReasonCode = "세대분리 test";
+        String testCurrentHouseMovementAddress = "대왕판교로 645번길 test";
+
         HouseholdRegister test = new HouseholdRegister();
         test.setCurrentHouseMovementAddress(testCurrentHouseMovementAddress);
         test.setHouseholdResidentSerialNumber(testHouseholdResidentSerialNumber);
