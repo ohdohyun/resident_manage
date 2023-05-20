@@ -5,7 +5,6 @@ import com.nhnacademy.resident_manage.config.WebConfig;
 import com.nhnacademy.resident_manage.domain.FamilyRelationshipDto;
 import com.nhnacademy.resident_manage.entity.FamilyRelationship;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +28,6 @@ class FamilyRelationshipRepositoryTest {
     private FamilyRelationshipRepository familyRelationshipRepository;
 
     @Test
-    @Disabled
     @DisplayName("FamilyRelationship 저장 테스트")
     void save() {
         Long testFamilySerialNumber = 1L;

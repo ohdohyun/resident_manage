@@ -3,10 +3,9 @@ package com.nhnacademy.resident_manage.service;
 import com.nhnacademy.resident_manage.config.RootConfig;
 import com.nhnacademy.resident_manage.config.WebConfig;
 import com.nhnacademy.resident_manage.domain.HouseholdRegister;
-import com.nhnacademy.resident_manage.entity.Household;
 import com.nhnacademy.resident_manage.repository.HouseholdRepository;
-import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -40,7 +37,7 @@ class HouseholdServiceTest {
     private final String testCurrentHouseMovementAddress = "대왕판교로 645번길 test";
 
     @Test
-
+    @DisplayName("정상 등록 테스트")
     void save() {
         HouseholdRegister test = new HouseholdRegister();
         test.setCurrentHouseMovementAddress(testCurrentHouseMovementAddress);
@@ -52,6 +49,7 @@ class HouseholdServiceTest {
     }
 
     @Test
+    @DisplayName("정상 삭제 테스트")
     void delete() {
         householdService.delete(1L);
         Assertions.assertThat(householdRepository.findById(1L)).isEmpty();

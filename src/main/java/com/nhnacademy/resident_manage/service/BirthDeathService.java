@@ -27,7 +27,7 @@ public class BirthDeathService {
         BirthDeathReportResident resident = new BirthDeathReportResident();
         BirthDeathReportResident.Pk pk = new BirthDeathReportResident.Pk();
 
-        pk.setBirthDeathTypeCode("birth");
+        pk.setBirthDeathTypeCode("출생");
         pk.setResidentSerialNumber(birthRegister.getTargetResidentSerialNumber());
         resident.setPk(pk);
 
@@ -61,7 +61,7 @@ public class BirthDeathService {
         BirthDeathReportResident resident = new BirthDeathReportResident();
         BirthDeathReportResident.Pk pk = new BirthDeathReportResident.Pk();
 
-        pk.setBirthDeathTypeCode("death");
+        pk.setBirthDeathTypeCode("사망");
         pk.setResidentSerialNumber(deathRegister.getTargetResidentSerialNumber());
         resident.setPk(pk);
 

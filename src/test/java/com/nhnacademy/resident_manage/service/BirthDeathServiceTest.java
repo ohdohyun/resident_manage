@@ -9,6 +9,7 @@ import com.nhnacademy.resident_manage.domain.DeathUpdate;
 import com.nhnacademy.resident_manage.entity.BirthDeathReportResident;
 import com.nhnacademy.resident_manage.repository.BirthDeathReportResidentRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ class BirthDeathServiceTest {
 
 
     @Test
+    @DisplayName("정상 등록 테스트")
     void birthSave() {
         BirthRegister test = new BirthRegister();
         test.setTargetResidentSerialNumber(testTargetSerialNumber);
@@ -54,11 +56,12 @@ class BirthDeathServiceTest {
 
         BirthDeathReportResident.Pk pk = bdService.birthSave(testReportSerialNumber, test);
         Assertions.assertThat(pk).isNotNull();
-        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("birth");
+        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("출생");
         Assertions.assertThat(pk.getResidentSerialNumber()).isEqualTo(testTargetSerialNumber);
     }
 
     @Test
+    @DisplayName("수정")
     void birthUpdate() {
         birthSave();
 
@@ -71,10 +74,11 @@ class BirthDeathServiceTest {
         BirthDeathReportResident.Pk pk = bdService.birthUpdate(testReportSerialNumber, testTargetSerialNumber, test);
         Assertions.assertThat(pk).isNotNull();
         Assertions.assertThat(pk.getResidentSerialNumber()).isEqualTo(testTargetSerialNumber);
-        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("birth");
+        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("출생");
     }
 
     @Test
+    @DisplayName("정상 등록 테스트")
     void deathSave() {
         DeathRegister test = new DeathRegister();
         test.setDeathReportDate(testReportDate);
@@ -87,11 +91,12 @@ class BirthDeathServiceTest {
 
         Assertions.assertThat(pk).isNotNull();
         Assertions.assertThat(pk.getResidentSerialNumber()).isEqualTo(testTargetSerialNumber);
-        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("death");
+        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("사망");
 
     }
 
     @Test
+    @DisplayName("정상 수정 테스트")
     void deathUpdate() {
         deathSave();
 
@@ -104,10 +109,11 @@ class BirthDeathServiceTest {
         BirthDeathReportResident.Pk pk = bdService.deathUpdate(testReportSerialNumber, testTargetSerialNumber, test);
         Assertions.assertThat(pk).isNotNull();
         Assertions.assertThat(pk.getResidentSerialNumber()).isEqualTo(testTargetSerialNumber);
-        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("death");
+        Assertions.assertThat(pk.getBirthDeathTypeCode()).isEqualTo("사망");
     }
 
     @Test
+    @DisplayName("정상 삭제 테스트")
     void delete() {
         bdService.delete(testReportSerialNumber, testTargetSerialNumber);
         Assertions.assertThat(repository.findByReportResident_ResidentSerialNumberAndResident_ResidentSerialNumber(testReportSerialNumber, testTargetSerialNumber)).isNull();

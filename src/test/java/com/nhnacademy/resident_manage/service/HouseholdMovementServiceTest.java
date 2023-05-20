@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -56,6 +55,7 @@ class HouseholdMovementServiceTest {
     }
 
     @Test
+    @DisplayName("정상 수정 테스트")
     void update() {
         // 기존 1, 20130305 데이터를 Y -> Nooootest로 수정 후 확인
         HouseholdMovementAddressUpdate test = new HouseholdMovementAddressUpdate();
@@ -67,6 +67,7 @@ class HouseholdMovementServiceTest {
     }
 
     @Test
+    @DisplayName("정상 삭제 테스트")
     void delete() {
         householdMovementService.delete(testHouseholdSerialNumber,testHouseMovementReportDate);
         Assertions.assertThat(repository.findById(

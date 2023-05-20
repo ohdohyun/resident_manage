@@ -1,11 +1,12 @@
 package com.nhnacademy.resident_manage.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nhnacademy.resident_manage.controller.ControllerBase;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.MessageSource;
-import org.springframework.context.MessageSourceAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,19 +23,13 @@ import org.thymeleaf.templatemode.TemplateMode;
 @EnableSpringDataWebSupport
 @Configuration
 @ComponentScan(basePackageClasses = ControllerBase.class)
-public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, MessageSourceAware {
+public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
-    private MessageSource messageSource;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
-    }
-
-    @Override
-    public void setMessageSource(MessageSource messageSource) {
-        this.messageSource = messageSource;
     }
 
     @Bean
@@ -46,10 +41,10 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
         thymeleafViewResolver.setViewNames(new String[]{"*"});
         return thymeleafViewResolver;
     }
-    public SpringTemplateEngine springTemplateEngine(){
+
+    public SpringTemplateEngine springTemplateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(springResourceTemplateResolver());
-        templateEngine.setTemplateEngineMessageSource(messageSource);
         return templateEngine;
     }
 
@@ -68,4 +63,14 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.viewResolver(thymeleafViewResolver());
     }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return objectMapper;
+    }
+
+
 }
