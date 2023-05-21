@@ -1,4 +1,4 @@
-package com.nhnacademy.resident_manage.controller;
+package com.nhnacademy.resident_manage.controller.rest_controller;
 
 import com.nhnacademy.resident_manage.domain.DeathRegister;
 import com.nhnacademy.resident_manage.domain.DeathUpdate;

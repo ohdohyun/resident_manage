@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주민 목록</title>
+    <link rel="stylesheet" href="/WEB-INF/style.css"/>
+</head>
+<body>
+
+<h1>주민 목록</h1>
+<table border="1">
+    <thead>
+    <th>이름</th>
+    <th>성별</th>
+    <th>등록 기준지 주소</th>
+    <th>가족관계증명서</th>
+    <th>주민등록등본</th>
+    <th>출생신고서</th>
+    <th>사망신고서</th>
+    <th>증명서 발급 목록</th>
+    </thead>
+    <tbody>
+    <tr th:each="resident : ${residents}" >
+        <td th:text="${resident.getName()}"></td>
+        <td th:text="${resident.getGenderCode()}"></td>
+        <td th:text="${resident.getRegistrationBaseAddress()}"></td>
+        <td><a th:href="@{/certificate/{serialNumber}/familyRelationship (serialNumber=${resident.getResidentSerialNumber()}) }">가족관계증명서</a></td>
+        <td><a th:href="@{/certificate/{serialNumber}/registration (serialNumber=${resident.getResidentSerialNumber()})}">주민등록등본</a></td>
+        <td><a th:href="@{/certificate/{serialNumber}/birth (serialNumber=${resident.getResidentSerialNumber()})}">출생신고서</a></td>
+        <td><a th:href="@{/certificate/{serialNumber}/death (serialNumber=${resident.getResidentSerialNumber()})}">사망신고서</a></td>
+        <td><a th:href="@{/certificate/{serialNumber}/list (serialNumber=${resident.getResidentSerialNumber()})}">증명서 발급 목록</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="page">
+    <a th:href="@{./residents(page=${residents.getNumber()-1}, size=${residents.getSize()})}" th:if="${residents.getNumber() > 0}">이전</a>
+    <span th:text="${residents.getNumber()}" />/<span th:text="${residents.getTotalPages()-1}"/>
+    <a th:href="@{./residents(page=${residents.getNumber()+1} , size=${residents.getSize()}  )}" th:if="${residents.getNumber() < residents.getTotalPages()}" >다음</a>
+</div>
+
+</body>
+</html>

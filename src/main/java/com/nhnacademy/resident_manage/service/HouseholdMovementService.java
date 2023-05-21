@@ -4,17 +4,17 @@ import com.nhnacademy.resident_manage.domain.HouseholdMovementAddressRegister;
 import com.nhnacademy.resident_manage.domain.HouseholdMovementAddressUpdate;
 import com.nhnacademy.resident_manage.entity.Household;
 import com.nhnacademy.resident_manage.entity.HouseholdMovementAddress;
-import com.nhnacademy.resident_manage.entity.Resident;
 import com.nhnacademy.resident_manage.repository.HouseholdMovementRepository;
 import com.nhnacademy.resident_manage.repository.HouseholdRepository;
-import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class HouseholdMovementService {
     private final HouseholdMovementRepository householdMovementRepository;
     private final HouseholdRepository householdRepository;

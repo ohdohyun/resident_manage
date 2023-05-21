@@ -1,3 +1,11 @@
+drop table if exists resident;
+drop table if exists birth_death_report_resident;
+drop table if exists family_relationship;
+drop table if exists household;
+drop table if exists household_movement_address;
+drop table if exists household_composition_resident;
+drop table if exists certificate_issue;
+
 CREATE TABLE IF NOT EXISTS resident (
     resident_serial_number INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,

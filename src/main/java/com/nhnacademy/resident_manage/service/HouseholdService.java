@@ -7,9 +7,11 @@ import com.nhnacademy.resident_manage.repository.HouseholdRepository;
 import com.nhnacademy.resident_manage.repository.ResidentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class HouseholdService {
     private final HouseholdRepository householdRepository;
     private final ResidentRepository residentRepository;
