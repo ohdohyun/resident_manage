@@ -35,7 +35,7 @@ public class Resident {
     @Column(name = "death_place_address")
     private String deathPlaceAddress;
 
-    @OneToMany(mappedBy = "baseResident")
+    @OneToMany(mappedBy = "baseResident", fetch = FetchType.EAGER)
     private List<FamilyRelationship> baseFamilyRelationships;
 
     @OneToMany(mappedBy = "familyResident")
