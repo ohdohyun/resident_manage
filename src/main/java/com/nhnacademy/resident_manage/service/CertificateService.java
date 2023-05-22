@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class CertificateService {
     private final ResidentRepository residentRepository;
     private final BirthDeathReportResidentRepository birthDeathReportResidentRepository;
@@ -23,6 +23,7 @@ public class CertificateService {
 
 
     /********** 가족관계증명서 **********/
+    @Transactional(readOnly = false)
     public FamilyRelationshipCertificateDto getFamilyRelationshipCertificate(Long serialNumber) {
         // 증명서 리스트에 저장
         Long confirmationNumber = saveCertificateIssue(serialNumber, "가족관계증명서");
@@ -31,6 +32,7 @@ public class CertificateService {
     }
 
     /********** 주민등록등본 **********/
+    @Transactional(readOnly = false)
     public RegistrationCertificateDto getRegistrationCertificate(Long serialNumber) {
         // 증명서 저장
         saveCertificateIssue(serialNumber, "주민등록등본");
