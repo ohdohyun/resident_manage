@@ -2,9 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>사망신고서</title>
+    <title>사망 신고서</title>
 </head>
 <body>
-
+<table border="1" style="width: 500px; height: 400px">
+    <tr>
+        <th colspan="6">사망신고서</br>
+            (신고일 : <span th:text="${deathReport.getBirthDeathReportDate()}"/>)
+        </th>
+    </tr>
+    <tr>
+        <th style="width: 20px" rowspan="4">사망자</th>
+        <th colspan="2">성명</th>
+        <th style="width: 190px;" th:text="${deathReport.getResident().getName()}"></th>
+        <th style="width: 90px">성별</th>
+        <th style="width: 90px" th:text="${deathReport.getResident().getGenderCode()}"></th>
+    </tr>
+    <tr>
+        <th colspan="2">사망일시</th>
+        <th colspan="3" th:text="${deathReport.getResident().getDeathDate()}"></th>
+    </tr>
+    <tr>
+        <th colspan="1" rowspan="2">사망장소</th>
+        <th style="width: 30px" >구분</th>
+        <th colspan="3" th:text="${deathReport.getResident().getDeathPlaceCode()}"></th>
+    </tr>
+    <tr>
+        <th>주소</th>
+        <th colspan="3" th:text="${deathReport.getResident().getDeathPlaceAddress()}"></th>
+    </tr>
+    <tr>
+        <th rowspan="3">신고인</th>
+        <th colspan="2">성명</th>
+        <th th:text="${deathReport.getReportResident().getName()}"></th>
+        <th style="width: 50px;">주민등록번호</th>
+        <th th:text="${deathReport.getReportResident().getResidentRegistrationNumber()}"></th>
+    </tr>
+    <tr>
+        <th colspan="2">자격</th>
+        <th colspan="3" th:text="${deathReport.getBirthReportQualificationsCode()}"></th>
+    </tr>
+    <tr>
+        <th colspan="2">이메일</th>
+        <th th:text="${deathReport.getEmailAddress()}"></th>
+        <th>전화번호</th>
+        <th th:text="${deathReport.getPhoneNumber()}"></th>
+    </tr>
+</table>
 </body>
 </html>

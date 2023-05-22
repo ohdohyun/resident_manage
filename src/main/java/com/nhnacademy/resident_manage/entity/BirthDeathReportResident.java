@@ -1,8 +1,6 @@
 package com.nhnacademy.resident_manage.entity;
 
 import lombok.*;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,7 +18,6 @@ public class BirthDeathReportResident {
     @MapsId("residentSerialNumber")
     @JoinColumn(name = "resident_serial_number")
     private Resident resident;
-
     @ManyToOne
     @JoinColumn(name = "report_resident_serial_number")
     private Resident reportResident;

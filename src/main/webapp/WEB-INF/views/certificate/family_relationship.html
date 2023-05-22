@@ -7,12 +7,12 @@
 <body>
 <table border="1">
     <tr>
-        <td colspan="5">가족관계증명서<br/>(발급일:<span th:text="${familyCertificateInfo.getCertificateIssueDate}"></span>,
+        <td colspan="5">가족관계증명서<br/>(발급일:<span th:text="${familyCertificateInfo.getCertificateIssueDate()}"></span>
         증명서확인번호:<span th:text="${familyCertificateInfo.getCertificateConfirmationNumber()}"></span></td>
     </tr>
     <tr>
         <td colspan="2">등록기준지<br/>(본적)</td>
-        <td colspan="3" th:text="${familyCertificateInfo.getRegistrationBaseAddress()}"></td>
+        <td colspan="3" th:text="${familyCertificateInfo.getResident().getRegistrationBaseAddress()}"></td>
     </tr>
     <tr>
         <td>구분</td>
@@ -23,17 +23,17 @@
     </tr>
     <tr>
        <td>본인</td>
-       <td th:text="${familyCertificateInfo.getName()}"></td>
-        <td th:text="${familyCertificateInfo.getBirthDate()}"></td>
-       <td th:text="${familyCertificateInfo.getResidentRegistrationNumber()}"></td>
-       <td th:text="${familyCertificateInfo.getGenderCode()}"></td>
+       <td th:text="${familyCertificateInfo.getResident().getName()}"></td>
+        <td th:text="${familyCertificateInfo.getResident().getBirthDate()}"></td>
+       <td th:text="${familyCertificateInfo.getResident().getResidentRegistrationNumber()}"></td>
+       <td th:text="${familyCertificateInfo.getResident().getGenderCode()}"></td>
     </tr>
-    <tr th:each="family: ${familyList}">
+    <tr th:each="family : ${familyCertificateInfo.getResident().getBaseFamilyRelationships()}">
         <td th:text="${family.getFamilyRelationshipCode()}"></td>
-        <td th:text="${family.getName()}"></td>
-        <td th:text="${family.getBirthDate()}"></td>
-        <td th:text="${family.getResidentRegistrationNumber()}"></td>
-        <td th:text="${family.getGenderCode()}"></td>
+        <td th:text="${family.getFamilyResident().getName()}"></td>
+        <td th:text="${family.getFamilyResident().getBirthDate()}"></td>
+        <td th:text="${family.getFamilyResident().getResidentRegistrationNumber()}"></td>
+        <td th:text="${family.getFamilyResident().getGenderCode()}"></td>
     </tr>
 </table>
 </body>

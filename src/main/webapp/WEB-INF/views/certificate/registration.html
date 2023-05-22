@@ -5,6 +5,47 @@
     <title>주민등록등본</title>
 </head>
 <body>
+<table border="1">
+    <tr>
+        <td colspan="6">
+            <h1>주민등록등본</h1>
+            (발급일: <span th:text="${registrationInfo.getCertificateIssueDate()}"/>,
+            증명서확인번호: <span th:text="${registrationInfo.getResidentRegistrationNumber()}"/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">세대주 성명</td>
+        <td th:text="${registrationInfo.getName()}"></td>
+        <td>세대구성 사유 및 일자</td>
+        <td colspan="2">
+            <span th:text="${registrationInfo.getHouseholdCompositionReasonCode()}"/><br/>
+            <span th:text="${registrationInfo.getHouseholdCompositionDate()}"/>
+            </td>
+    </tr>
+    <tr>
+        <td colspan="4">주소</td>
+        <td colspan="2">신고일</td>
+    </tr>
+    <tr th:each="address : ${registrationAddressList} ">
+        <td th:text="${address.getYn()}"></td>
+        <td colspan="3" th:text="${address.getAddress()}"></td>
+        <td colspan="2" th:text="${address.getDate()}"></td>
+    </tr>
+    <tr>
+        <td>세대주관계</td>
+        <td>성명</td>
+        <td colspan="2">주민등록번호</td>
+        <td>신고일</td>
+        <td>변동사유</td>
+    </tr>
+    <tr th:each="family:${registrationFamilyList}">
+        <td th:text="${family.getRelationship()}"></td>
+        <td th:text="${family.getName()}"></td>
+        <td colspan="2" th:text="${family.getRegistration()}"></td>
+        <td th:text="${family.getDate()}"></td>
+        <td th:text="${family.getReason()}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

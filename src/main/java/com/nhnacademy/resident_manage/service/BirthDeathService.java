@@ -90,4 +90,7 @@ public class BirthDeathService {
         bdRepository.deleteByReportResident_ResidentSerialNumberAndResident_ResidentSerialNumber(serialNumber, targetSerialNumber);
     }
 
+
+
+
 }

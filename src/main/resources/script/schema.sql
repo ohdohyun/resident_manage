@@ -7,7 +7,6 @@ drop table household_movement_address;
 drop table household_composition_resident;
 drop table certificate_issue;
 
-
 -- 2. 테이블 생성
 create table resident
 (
@@ -76,7 +75,7 @@ create table household_composition_resident
 
 create table certificate_issue
 (
-    certificate_confirmation_number bigint      not null,
+    certificate_confirmation_number bigint      not null auto_increment,
     resident_serial_number          int         not null,
     certificate_type_code           varchar(20) not null,
     certificate_issue_date          date        not null,

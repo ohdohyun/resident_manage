@@ -14,6 +14,7 @@ public class HouseholdMovementAddress {
 
     @EmbeddedId
     private Pk pk;
+
     @ManyToOne
     @MapsId("householdSerialNumber")
     @JoinColumn(name = "household_serial_number")

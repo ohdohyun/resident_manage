@@ -35,8 +35,11 @@
 <div class="page">
     <a th:href="@{./residents(page=${residents.getNumber()-1}, size=${residents.getSize()})}" th:if="${residents.getNumber() > 0}">이전</a>
     <span th:text="${residents.getNumber()}" />/<span th:text="${residents.getTotalPages()-1}"/>
-    <a th:href="@{./residents(page=${residents.getNumber()+1} , size=${residents.getSize()}  )}" th:if="${residents.getNumber() < residents.getTotalPages()}" >다음</a>
+    <a th:href="@{./residents(page=${residents.getNumber()+1} , size=${residents.getSize()}  )}" th:if="${residents.getNumber() < residents.getTotalPages()-1}" >다음</a>
 </div>
+
+<br/><br/>
+## 증명서를 클릭하면 새로 발급됩니다.
 
 </body>
 </html>
