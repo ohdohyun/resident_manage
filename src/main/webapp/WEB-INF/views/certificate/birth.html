@@ -5,9 +5,10 @@
     <title>Title</title>
 </head>
 <body>
+<th:block th:include="fragments/heading" />
 <table border="1" style="width: 500px; height: 400px">
     <tr>
-        <th colspan="6">출생신고서</br>
+        <th colspan="6">출생신고서<br/>
             (신고일 : <span style="color:#4141de" th:text="${birthReport.getBirthDeathReportDate()}" />)
         </th>
     </tr>

@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>index asdf</title>
+    <meta charset="UTF-8" />
+    <title>Main</title>
 </head>
 <body>
-<h1 th:text="${greeting}"></h1>
+    <h1>Main</h1>
 
-<span th:utext="'M<b>V</b>C'" />
-<a th:href="@{/test}">goToTestPage</a>
+    <th:block th:include="fragments/heading" />
+
+    <ul>
+        <li sec:authorize="hasAnyAuthority('ROLE_ADMIN', 'ROLE_MEMBER')">
+            <a href="/residents">주민 목록</a>
+        </li>
+    </ul>
+    <br />
+
 </body>
 </html>

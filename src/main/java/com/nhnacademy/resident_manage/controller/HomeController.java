@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Controller
@@ -17,15 +18,14 @@ public class HomeController {
     private final ResidentRepository residentRepository;
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("greeting", "hello??");
+    public String home() {
         return "index";
     }
 
     @GetMapping("/test")
     public String test(Model model) {
-        Optional<Resident> resident = residentRepository.findById(1L);
-        model.addAttribute("resident", resident.get());
+        Resident resident = residentRepository.findById(1L).orElseThrow(EntityNotFoundException::new);
+        model.addAttribute("resident", resident);
         return "test";
     }
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+</head>
+<body>
+    <form method="post" action="/login">
+        <span th:text="loginId" />: <input type="text" name="id" /><br />
+        <span th:text="loginPwd" />: <input type="password" name="pwd" /><br />
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="submit" />
+    </form>
+</body>
+
+###  ( admin, admin ) 으로 로그인 가능합니다. (주민, 증명서 확인 가능) <br/>
+###  ( member, member ) 으로 로그인 가능합니다. (주민 리스트만 확인 가능)
+</html>

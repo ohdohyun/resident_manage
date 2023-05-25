@@ -5,6 +5,7 @@
     <title>가족관계증명서</title>
 </head>
 <body>
+<th:block th:include="fragments/heading" />
 <table border="1">
     <tr>
         <td colspan="5">가족관계증명서<br/>(발급일:<span th:text="${familyCertificateInfo.getCertificateIssueDate()}"></span>

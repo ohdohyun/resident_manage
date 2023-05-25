@@ -7,10 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CertificateIssueRepository extends JpaRepository<CertificateIssue, Long > {
-//    FamilyRelationshipCertificateDto findByCertificateConfirmationNumber(Long certificateConfirmationNumber);
-
     Page<CertificateIssue> findAllByResident_ResidentSerialNumber(Long serialNumber, Pageable pageable);
 
-    FamilyRelationshipCertificateDto findAllByCertificateConfirmationNumber(Long certificateConfirmationNumber);
+    FamilyRelationshipCertificateDto findFamilyRelationshipCertificateByCertificateConfirmationNumber(Long certificateConfirmationNumber);
 
 }

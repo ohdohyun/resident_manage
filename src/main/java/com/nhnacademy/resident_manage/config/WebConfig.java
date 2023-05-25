@@ -14,6 +14,7 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -45,6 +46,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     public SpringTemplateEngine springTemplateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(springResourceTemplateResolver());
+        templateEngine.addDialect(new SpringSecurityDialect());
+
         return templateEngine;
     }
 
@@ -69,8 +72,11 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
         return objectMapper;
     }
+
+
 
 
 }

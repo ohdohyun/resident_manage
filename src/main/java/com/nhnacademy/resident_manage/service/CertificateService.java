@@ -28,7 +28,7 @@ public class CertificateService {
         // 증명서 리스트에 저장
         Long confirmationNumber = saveCertificateIssue(serialNumber, "가족관계증명서");
         // 주민 & 증명서 정보 레포지토리에서 가져오기
-        return certificateIssueRepository.findAllByCertificateConfirmationNumber(confirmationNumber);
+        return certificateIssueRepository.findFamilyRelationshipCertificateByCertificateConfirmationNumber(confirmationNumber);
     }
 
     /********** 주민등록등본 **********/
